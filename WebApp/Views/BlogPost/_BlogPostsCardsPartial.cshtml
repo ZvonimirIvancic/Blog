@@ -1,0 +1,20 @@
+﻿@model IEnumerable<DAL.Models.BlogPost>
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3">
+        <div class="card mb-3 h-100">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">@item.Content</p>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Index" asp-route-id="@item.IdblogPosts" asp-controller="Comment" class="btn btn-primary">Comment</a>
+                <a asp-action="Edit" asp-route-id="@item.IdblogPosts" class="btn btn-secondary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.IdblogPosts" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+}
+
+

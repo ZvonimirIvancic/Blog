@@ -1,0 +1,27 @@
+﻿@model X.PagedList.IPagedList<DAL.Models.BlogPost>
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Index";
+    string searchText = HttpContextAccessor.HttpContext.Request.Cookies["SearchText"];
+    var PostsItems = Model;
+    var page = (int?)ViewData["page"];
+    var pages = (int?)ViewData["pages"];
+}
+
+<h1>Posts</h1>
+<a asp-action="Create" class="btn btn-primary mb-3 mt-3">Create new Post</a>
+<form method="get">
+    <input class="w-25" id="searchValue" type="search" name="searchText" placeholder="Search by Post Title" value="@searchText" />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<br />
+
+<div class="row" id="posts-cards-row">
+    <partial name="_BlogPostsCardsPartial" />
+</div>
+
+
+
